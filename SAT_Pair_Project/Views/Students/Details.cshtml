@@ -1,0 +1,51 @@
+﻿@model SAT_Pair_Project.DATA.EF.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <div class="dl-horizontal">
+
+        <div>
+            <img style="max-width:100px" src="~/Content/assets/students/@Model.PhotoUrl" alt="studentImg" />
+            Student:
+            @Html.DisplayFor(model => model.FullName)
+        </div>
+        <br />
+        Student Status:
+        @Html.DisplayFor(model => model.StudentStatus.SSName)
+        <br />
+        <br />
+        Major:
+        @Html.DisplayFor(model => model.Major)
+        <br />
+        <br />
+        <div>
+            @Html.DisplayNameFor(model => model.Address):
+        </div>
+        <div>
+            @Html.DisplayFor(model => model.Address),
+            @Html.DisplayFor(model => model.City)
+            @Html.DisplayFor(model => model.State)
+            @Html.DisplayFor(model => model.ZipCode)
+        </div>
+        <br />
+        <div>
+            Contact Information:
+        </div>
+        Phone: @Html.DisplayFor(model => model.Phone)
+        <br />
+        Email: @Html.DisplayFor(model => model.Email)
+        <br />
+        <br />
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

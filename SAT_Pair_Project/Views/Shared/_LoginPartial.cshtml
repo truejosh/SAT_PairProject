@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNet.Identity
+@using SAT_Pair_Project.DATA.EF
+
+
+
+@if (Request.IsAuthenticated)
+{
+    SAT_DBEntities db = new SAT_DBEntities();
+    //get the user id
+    //string userID = User.Identity.GetUserId();
+    //capture the associated user record from UserDetails
+    //UserDetail currentUser = db.UserDetails.Where(ud => ud.UserID == userID).FirstOrDefault();
+
+    //default the user first name to Guest in case we don't find a matching record
+    //string userFN = "Guest";
+    //string faveColor = "#cccccc";
+
+    //if we did get a match, use it to populate the variables from above
+    //if (currentUser != null)
+    //{
+        //userFN = currentUser.FirstName;
+       // faveColor = currentUser.FavoriteColor;
+    //}
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav">
+            @*<li>*@
+                @* Updated below - doesn't show full email *@
+                @*@Html.ActionLink("Hi " + User.Identity.GetUserName().Substring(0, location), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+                @*@Html.ActionLink($"Hi {userFN}!", "Index", "Manage", null, new { style = $"color: {faveColor}; text-shadow: 1px 1px #000;" })*@
+            @*</li>*@
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
